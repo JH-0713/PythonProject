@@ -11,7 +11,7 @@ def home():
 def calculo():
     return render_template('calculo.html')
 
-@app.route('/operacoes')
+@app.route('/operacoe')
 def operacoes():
     return render_template('operacoes.html')
 
