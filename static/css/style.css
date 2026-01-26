@@ -1,0 +1,44 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu {
+    background: deepskyblue;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu ul {
+    list-style-type: none;
+    display: flex;
+    margin: 8px;
+}
+
+.menu ul li {
+    padding: 10px;
+    margin: 5px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+.conteudo {
+    display: flex;
+    align-items: center;
+    margin: 50px 0 50px 20px;
+}
+
+.card {
+    background: skyblue;
+    border: 7px solid black;
+    border-radius: 25px;
+    padding: 45px;
+
+}

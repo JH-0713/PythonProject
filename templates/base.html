@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Frontend</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="menu">
+    <ul>
+        <li><a href="{{url_for('home')}}">Home</a></li>
+        <li><a href="{{url_for('calculo')}}">Calculos</a></li>
+    </ul>
+</div>
+<div class="conteudo">
+    {% block conteudo %}
+    {% endblock conteudo%}
+</div>
+</body>
+</html>
