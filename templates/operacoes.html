@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+<a href="{{url_for('soma')}}" class="links">
+    <div class="card">
+        <h3>Soma</h3>
+    </div>
+</a>
+<a href="{{url_for('subtracao')}}" class="links">
+    <div class="card">
+        <h3>Subtação</h3>
+    </div>
+</a>
+<a href="{{url_for('multiplicacao')}}" class="links">
+    <div class="card">
+        <h3>Multiplicação</h3>
+    </div>
+</a>
+<a href="{{url_for('divisao')}}" class="links">
+    <div class="card">
+        <h3>Divisão</h3>
+    </div>
+</a>
 
-{% endblock conteudo %}
+
+{% endblock %}

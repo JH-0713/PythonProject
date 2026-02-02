@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<form class="formu" method="post">
+    <div class="num">
+        <label for="num1">
+            Numero 1:</label>
+        <input type="number" name="form_num_1" id="num1" required>
+    </div>
+    <div class="num">
+        <label for="num2">Numero 2:</label>
+        <input type="number" name="form_num_2" id="num2" required>
+    </div>
+    <button type="submit">Ver Resultado</button>
+</form>
+
+{% endblock conteudo %}
