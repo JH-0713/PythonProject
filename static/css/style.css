@@ -1,30 +1,31 @@
-body {
-    width: 100vw;
-    height: 100vh;
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-* {
-    font-weight: bold;
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans serif;
 }
 
 .menu {
-    background: deepskyblue;
-    display: flex;
-    justify-content: flex-end;
+    background-color: deepskyblue;
+    width: 100%;
+    height: 50px;
 }
 
 .menu ul {
     list-style-type: none;
+    width: 100%;
+    height: 100%;
     display: flex;
-    margin: 8px;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .menu ul li {
     padding: 10px;
-    margin: 5px;
 }
 
 .menu ul li a {
@@ -33,67 +34,97 @@ body {
     color: white;
 }
 
-.conteudo {
-    display: flex;
-    align-items: center;
-    margin: 20px;
-}
-
-.card {
-    background: skyblue;
-    border: 7px solid black;
-    border-radius: 25px;
-    width: 125px;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.card:hover {
-    background: lightblue;
-    border: 7px solid black;
-    border-radius: 25px;
-    width: 125px;
-    margin: 10px;
-}
-
-.links {
+a {
     text-decoration: none;
-    color: white;
     font-weight: bold;
 }
 
-.links:hover {
-    color: black;
+.conteudo h1 {
+    margin: 10px;
+    text-align: center;
+    font-size: 50px;
 }
 
-.formu {
+.home {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background: azure;
+}
+
+.texto-left {
+    width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-.formu button {
-    margin: 15px;
-    background: skyblue;
-    border: 2px inset blue;
-    border-radius: 5px;
+.img-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+
+    background-image: url("/static/img/senai.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.calculos {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding: 10px;
+
+}
+
+.calculos a {
+    color: black;
+    font-family: "Arial Black", sans-serif;
+}
+
+.calculos a:hover {
+    color: white;
+}
+
+.card_calculo {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: lightskyblue;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.card_operacao {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
     padding: 10px;
 }
 
-.formu button:hover {
-    cursor: pointer;
-}
-
-.num {
+.form-calc {
     display: flex;
     flex-direction: column;
+    gap: 6px;
+    padding: 14px;
 }
 
-.num input {
-    height: 20px;
-    border: 3px outset black;
-    border-radius: 5px;
-    margin-left: 30px;
+.form-calc input {
+    width: 80px;
 }
 
+.operador {
+    font-size: 26px;
+}
