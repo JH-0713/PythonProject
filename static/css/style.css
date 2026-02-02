@@ -96,15 +96,11 @@ a {
 }
 
 .card_calculo {
-    width: 150px;
+    width: 200px;
     height: 150px;
-    display: flex;
-    justify-content: center;
     align-items: center;
     text-align: center;
     background-color: lightskyblue;
-    border: 1px solid black;
-    border-radius: 10px;
 }
 
 .card_operacao {
@@ -127,4 +123,14 @@ a {
 
 .operador {
     font-size: 26px;
+}
+
+.icon_calc {
+    font-size: 40px;
+    color: darkblue;
+}
+
+.card_icon {
+    display: flex;
+    flex-direction: column;
 }

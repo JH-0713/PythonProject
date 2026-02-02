@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h1>Geometria</h1>
+
+<div class="calculos">
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Área do Triangulo</h5>
+            <i class="icon_calc bi bi-triangle-fill"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('area_triangulo') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Lado..." name="form_lado_t">
+            </label>
+            <p class="resultado">
+                {% if area_t is defined %}
+                Área do Triangulo = {{ area_t }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+
+
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Área do Circulo</h5>
+            <i class="icon_calc bi bi-circle-fill"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('area_circulo') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Raio..." name="form_raio">
+            </label>
+            <p class="resultado">
+                {% if area_c is defined %}
+                Área do Circulo = {{ area_c }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Área do Quadrado</h5>
+            <i class="icon_calc bi bi-square-fill"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('area_quadrado') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Lado..." name="form_lado_q">
+            </label>
+            <p class="resultado">
+                {% if area_q is defined %}
+                Área do Quadrado = {{ area_q }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+    <div class="card_operacao">
+    <div class="card_icon">
+        <h5>Área do Hexagono</h5>
+        <i class="icon_calc bi bi-hexagon-fill"></i>
+    </div>
+    <form class="form-calc" action="{{ url_for('area_hexagono') }}" method="post">
+        <label>
+            <input class="form-control w-100" placeholder="Defina o Lado..." name="form_lado_h">
+        </label>
+        <p class="resultado">
+            {% if area_h is defined %}
+            Área do Hexagono = {{ area_h }}
+            {% else %}
+            {% endif %}
+        </p>
+        <button type="submit" class="btn btn-info">Calcular</button>
+    </form>
+</div>
+</div>
+
+
+
+<div class="calculos">
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Perímetro do Triangulo</h5>
+            <i class="icon_calc bi bi-triangle"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('perimetro_triangulo') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Lado..." name="form_lado_t">
+            </label>
+            <p class="resultado">
+                {% if perime_t is defined %}
+                Perímetro do Triangulo = {{ perime_t }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+
+
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Perímetro do Circulo</h5>
+            <i class="icon_calc bi bi-circle"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('perimetro_circulo') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Raio..." name="form_raio">
+            </label>
+            <p class="resultado">
+                {% if perime_c is defined %}
+                Perímetro do Triangulo = {{ perime_c }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+
+
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Perímetro do Quadrado</h5>
+            <i class="icon_calc bi bi-square"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('perimetro_quadrado') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Lado..." name="form_lado_q">
+            </label>
+            <p class="resultado">
+                {% if perime_q is defined %}
+                Perímetro do Triangulo = {{ perime_q }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+
+
+    <div class="card_operacao">
+        <div class="card_icon">
+            <h5>Perímetro do Hexágono</h5>
+            <i class="icon_calc bi bi-hexagon"></i>
+        </div>
+        <form class="form-calc" action="{{ url_for('perimetro_hexagano') }}" method="post">
+            <label>
+                <input class="form-control w-100" placeholder="Defina o Lado..." name="form_lado_h">
+            </label>
+            <p class="resultado">
+                {% if perime_h is defined %}
+                Perímetro do Hexágono = {{ perime_h }}
+                {% else %}
+                {% endif %}
+            </p>
+            <button type="submit" class="btn btn-info">Calcular</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

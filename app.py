@@ -54,6 +54,83 @@ def dividir():
             return render_template("operacoes.html", n1=n1, n2=n2, divisao=divisao)
     return render_template("operacoes.html")
 
+@app.route('/geometria')
+def geometria():
+    return render_template("geometria.html")
+
+@app.route('/area_triangulo', methods=['GET', 'POST'])
+def area_triangulo():
+    if request.method == 'POST':
+        if request.form['form_lado_t']:
+            lado_t = float(request.form['form_lado_t'])
+            area_t = (pow(lado_t, 2) * 3 ** 0.5) / 4
+            return render_template('geometria.html',lado_t=lado_t,area_t=round(area_t,2))
+    return render_template('geometria.html')
+
+@app.route('/perimetro_triangulo', methods=['GET', 'POST'])
+def perimetro_triangulo():
+    if request.method == 'POST':
+        if request.form['form_lado_t']:
+            lado_t = float(request.form['form_lado_t'])
+            perime_t = lado_t * 3
+            return render_template('geometria.html',lado_t=lado_t,perime_t=round(perime_t,2))
+    return render_template('geometria.html')
+
+@app.route('/area_circulo', methods=['GET', 'POST'])
+def area_circulo():
+    if request.method == 'POST':
+        if request.form['form_raio']:
+            raio = float(request.form['form_raio'])
+            area_c = 3.14 * pow(raio, 2)
+            return render_template('geometria.html',raio=raio,area_c=round(area_c,2))
+    return render_template('geometria.html')
+
+@app.route('/perimetro_circulo', methods=['GET', 'POST'])
+def perimetro_circulo():
+    if request.method == 'POST':
+        if request.form['form_raio']:
+            raio = float(request.form['form_raio'])
+            perime_c = 2 * 3.14 * raio
+            return render_template('geometria.html',raio=raio,perime_c=round(perime_c,2))
+    return render_template('geometria.html')
+
+
+@app.route('/area_quadrado', methods=['GET', 'POST'])
+def area_quadrado():
+    if request.method == 'POST':
+        if request.form['form_lado_q']:
+            lado_q = float(request.form['form_lado_q'])
+            area_q = pow(lado_q, 2)
+            return render_template('geometria.html',lado_q=lado_q,area_q=round(area_q,2))
+    return render_template('geometria.html')
+
+@app.route('/perimetro_quadrado', methods=['GET', 'POST'])
+def perimetro_quadrado():
+    if request.method == 'POST':
+        if request.form['form_lado_q']:
+            lado_q = float(request.form['form_lado_q'])
+            perime_q = 4 * lado_q
+            return render_template('geometria.html',lado_q=lado_q,perime_q=round(perime_q,2))
+    return render_template('geometria.html')
+
+@app.route('/area_hexagono', methods=['GET', 'POST'])
+def area_hexagono():
+    if request.method == 'POST':
+        if request.form['form_lado_h']:
+            lado_h = float(request.form['form_lado_h'])
+            area_h = (3 * pow(lado_h, 2) * 3 ** 0.5) / 2
+            return render_template('geometria.html',lado_h=lado_h,area_h=round(area_h,2))
+    return render_template('geometria.html')
+
+@app.route('/perimetro_hexagano', methods=['GET', 'POST'])
+def perimetro_hexagano():
+    if request.method == 'POST':
+        if request.form['form_lado_h']:
+            lado_h = float(request.form['form_lado_h'])
+            perime_h = 6 * lado_h
+            return render_template('geometria.html',lado_h=lado_h,perime_h=round(perime_h,2))
+    return render_template('geometria.html')
+
 #TODO Final do código
 
 if __name__ == '__main__':
