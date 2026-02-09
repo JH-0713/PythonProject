@@ -23,7 +23,7 @@
     <div class="card_operacao">
         <i class="icon_calc bi bi-plus-circle"></i>
         <h2>Adição</h2>
-        <form class="form-calc" action="{{ url_for('somar') }}" method="post">
+        <form class="form-card" action="{{ url_for('somar') }}" method="post">
             <label>
                 <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-soma_1">
             </label>
@@ -61,7 +61,7 @@
     <div class="card_operacao">
         <i class="icon_calc bi bi-dash-circle"></i>
         <h2>Subtração</h2>
-        <form class="form-calc" action="{{ url_for('subtrarir') }}" method="post">
+        <form class="form-card" action="{{ url_for('subtrarir') }}" method="post">
             <label>
                 <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-sub_1">
             </label>
@@ -99,7 +99,7 @@
     <div class="card_operacao">
         <i class="icon_calc bi bi-x-circle"></i>
         <h2>Multiplicação</h2>
-        <form class="form-calc" action="{{ url_for('multiply') }}" method="post">
+        <form class="form-card" action="{{ url_for('multiply') }}" method="post">
             <label>
                 <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-mult_1">
             </label>
@@ -137,7 +137,7 @@
     <div class="card_operacao">
         <i class="icon_calc bi bi-slash-circle"></i>
         <h2>Divisão</h2>
-        <form class="form-calc" action="{{ url_for('dividir') }}" method="post">
+        <form class="form-card" action="{{ url_for('dividir') }}" method="post">
             <label>
                 <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-divi_1">
             </label>

@@ -187,6 +187,40 @@ def perimetro_hexagano():
 def funcionario():
     return render_template('funcionarios.html')
 
+@app.route('/novo_funcionario', methods=['GET', 'POST'])
+def n_funcionario():
+    if request.method == 'POST':
+        if not request.form['form_nome']:
+            flash('Preencha o Campo Nome', 'alert-danger')
+        if not request.form['form_date_nascimento']:
+            flash('Preencha o Campo Data Nascimento', 'alert-danger')
+        if not request.form['form_cpf']:
+            flash('Preencha o Campo CPF', 'alert-danger')
+        if not request.form['form_email']:
+            flash('Preencha o Campo Email', 'alert-danger')
+        if not request.form['form_senha']:
+            flash('Preencha o Campo Senha', 'alert-danger')
+        if not request.form['form_cargo']:
+            flash('Preencha o Campo Cargo', 'alert-danger')
+        if not request.form['form_salario']:
+            flash('Preencha o Campo Salario', 'alert-danger')
+        else:
+            nome = request.form['form_nome']
+            data_nascimento = request.form['form_date_nascimento']
+            cpf = request.form['form_cpf']
+            email = request.form['form_email']
+            senha = request.form['form_senha']
+            cargo = request.form['form_cargo']
+            salario = request.form['form_salario']
+            flash('Novo Funcionario Cadastrado', 'alert-success')
+            return render_template('funcionarios.html', nome=nome,data_nascimento=data_nascimento,cpf=cpf,
+                                   email=email,senha=senha,cargo=cargo,salario=salario)
+    return render_template('funcionarios.html')
+
+@app.route('/Login')
+def login():
+    return render_template('login.html')
+
 # TODO Final do código
 
 if __name__ == '__main__':
