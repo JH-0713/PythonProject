@@ -1,7 +1,27 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, flash, render_template, url_for, request, redirect
+from sqlalchemy.exc import SQLAlchemyError
+from database import db_session, Funcionarios
+from sqlalchemy import select, and_, func
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'flamingo'
+# Mover para .env
+app.config['SECRET_KEY'] = 'FLAMINGO'
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
+
+
+@login_manager.user_loader
+def load_user(funci_id):
+    funcio = select(Funcionarios).where(Funcionarios.id == int(funci_id))
+    result = db_session.execute(funcio).scalar_one_or_none()
+    return result
 
 
 @app.route('/')
@@ -163,7 +183,7 @@ def area_hexagono():
     if request.method == 'POST':
         if request.form['form_lado_h']:
             lado_h = float(request.form['form_lado_h'])
-            area_h = (3 * pow(lado_h, 2) * 3 ** 0.5) / 2 # A = (3√3 * L²) / 2
+            area_h = (3 * pow(lado_h, 2) * 3 ** 0.5) / 2  # A = (3√3 * L²) / 2
             flash('Área do Hexagono Calculado', 'alert-success')
             return render_template('geometria.html', lado_h=lado_h, area_h=round(area_h, 2))
         else:
@@ -180,12 +200,18 @@ def perimetro_hexagano():
             flash('Perímetro do Hexagono Calculado', 'alert-success')
             return render_template('geometria.html', lado_h=lado_h, perime_h=round(perime_h, 2))
         else:
-            flash('Preencha todos os campos para calcular o Perímetro do Hexagono','alert-danger')
+            flash('Preencha todos os campos para calcular o Perímetro do Hexagono', 'alert-danger')
     return render_template('geometria.html')
 
+
 @app.route('/funcionario')
+@login_required
 def funcionario():
-    return render_template('funcionarios.html')
+    sql_funcio = select(Funcionarios)
+    funcio_exe = db_session.execute(sql_funcio).scalars().all()
+    print(f'aaa: {funcio_exe}')
+    return render_template('funcionarios.html',funcio_exe=funcio_exe)
+
 
 @app.route('/novo_funcionario', methods=['GET', 'POST'])
 def n_funcionario():
@@ -213,13 +239,81 @@ def n_funcionario():
             cargo = request.form['form_cargo']
             salario = request.form['form_salario']
             flash('Novo Funcionario Cadastrado', 'alert-success')
-            return render_template('funcionarios.html', nome=nome,data_nascimento=data_nascimento,cpf=cpf,
-                                   email=email,senha=senha,cargo=cargo,salario=salario)
+            return render_template('funcionarios.html', nome=nome, data_nascimento=data_nascimento, cpf=cpf,
+                                   email=email, senha=senha, cargo=cargo, salario=salario)
     return render_template('funcionarios.html')
 
-@app.route('/Login')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    if request.method == 'POST':
+        email = request.form.get('form_email')
+        senha = request.form.get('form_senha')
+        if not email:
+            flash('Porfavor insira o email', 'danger')
+            return render_template('login.html')
+        if not senha:
+            flash('Porfavor insira o senha', 'danger')
+            return render_template('login.html')
+        email_sql = select(Funcionarios).where(Funcionarios.email == email)
+        result = db_session.execute(email_sql).scalar_one_or_none()
+        print('asd', result)
+        if result:
+            if result.check_password(senha):
+                login_user(result)
+                flash('Logado com sucesso!', 'success')
+                return redirect(url_for('home'))
+            else:
+                flash('Senha Incorreta', 'error')
+                return render_template('login.html')
+        else:
+            flash(f'Email não Encontrado', 'danger')
+            return render_template('login.html')
+    else:
+        return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Logout realizado com sucesso!', 'success')
+    return redirect(url_for('login'))
+
+@app.route('/cadastrar', methods=['GET', 'POST'])
+def registrar():
+    if request.method == 'POST':
+        nome = request.form.get('form_nome')
+        data_nascimento = request.form.get('form_date_nascimento')
+        cpf = request.form.get('form_cpf')
+        email = request.form.get('form_email')
+        senha = request.form.get('form_senha')
+        cargo = request.form.get('form_cargo')
+        salario = request.form.get('form_salario')
+        if not nome or not data_nascimento or not cpf or not email or not senha or not cargo or not salario:
+            flash('Porfavor insira o nome', 'danger')
+            return render_template('login.html')
+
+        ver_email = select(Funcionarios).where(Funcionarios.email == email)
+        exist_email = db_session.execute(ver_email).scalar_one_or_none()
+        if exist_email:
+            flash(f'Email: {email} já esta cadastrado', 'danger')
+            return render_template('login.html')
+        try:
+            new_user = Funcionarios(nome=nome, data_nascimento=data_nascimento, cpf=cpf,email=email, cargo=cargo, salario=salario)
+            new_user.set_password(senha)
+            db_session.add(new_user)
+            db_session.commit()
+            flash(f'Usuario: {nome} Cadastrado com sucesso!', 'success')
+            print('Cadastrado com sucesso!')
+            return redirect(url_for('funcionario'))
+        except SQLAlchemyError as e:
+            flash(f'Erro na base de dados', 'danger')
+            print(f'Erro na base de dados {e}')
+            return redirect(url_for('funcionario'))
+        except Exception as e:
+            flash(f'Error', 'danger')
+            print(f'Erro: {e}')
+            return redirect(url_for('funcionario'))
 
 # TODO Final do código
 

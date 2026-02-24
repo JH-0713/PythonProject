@@ -1,177 +1,177 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-
-<h1>Operações Aritméticas</h1>
-<!--  Verifica se possui mensagens enviadas pelo app  -->
-<!--  definir with_categories=true caso queira ter acesso as categorias  -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-<div class="flash-error px-3">
-    <!--  percorrer a lista de mensagens  -->
-    {% for category, message in messages %}
-    <!--  Criar um card pai e filho  -->
-    <div class="alert {{ category }} alert-dismissible fade show px-5" role="alert">
-        <strong>{{ message }}</strong>.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="content">
+    <h1>Operações Aritméticas</h1>
+    <!--  Verifica se possui mensagens enviadas pelo app  -->
+    <!--  definir with_categories=true caso queira ter acesso as categorias  -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-error px-3">
+        <!--  percorrer a lista de mensagens  -->
+        {% for category, message in messages %}
+        <!--  Criar um card pai e filho  -->
+        <div class="alert {{ category }} alert-dismissible fade show px-5" role="alert">
+            <strong>{{ message }}</strong>.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="calculos">
+        <div class="card_operacao">
+            <i class="icon_calc bi bi-plus-circle"></i>
+            <h2>Adição</h2>
+            <form class="form-card" action="{{ url_for('somar') }}" method="post">
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-soma_1">
+                </label>
+                <p class="operador">+</p>
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-soma_2">
+                </label>
+                <p class="resultado">
+                    {% if soma is defined %}
+                    {{ n1 }} + {{ n2 }} = {{ soma }}
+                    {% else %}
+                    {% endif %}
+                </p>
+
+                <button type="submit" class="btn btn-info">Soma</button>
+            </form>
+            <div class="accordion" id="accordionSoma">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseAdicao" aria-expanded="false" aria-controls="collapseAdicao">
+                            <i class="bi bi bi-info-square px-2"></i>
+                            Como calcular?
+                        </button>
+                    </h2>
+                    <div id="collapseAdicao" class="accordion-collapse collapse" data-bs-parent="#accordionSoma">
+                        <div class="accordion-body">
+                            <h4>Adição:</h4>
+                            <p>Para somar é necessario de<br> 2 ou mais numeros</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_operacao">
+            <i class="icon_calc bi bi-dash-circle"></i>
+            <h2>Subtração</h2>
+            <form class="form-card" action="{{ url_for('subtrarir') }}" method="post">
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-sub_1">
+                </label>
+                <p class="operador">-</p>
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-sub_2">
+                </label>
+                <p class="resultado">
+                    {% if subtracao is defined %}
+                    {{ n1 }} - {{ n2 }} = {{ subtracao }}
+                    {% else %}
+                    {% endif %}
+                </p>
+
+                <button type="submit" class="btn btn-info">Subtrair</button>
+            </form>
+            <div class="accordion" id="accordionSubtracao">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseMenos" aria-expanded="false" aria-controls="collapseMenos">
+                            <i class="bi bi bi-info-square px-2"></i>
+                            Como calcular?
+                        </button>
+                    </h2>
+                    <div id="collapseMenos" class="accordion-collapse collapse" data-bs-parent="#accordionSubtracao">
+                        <div class="accordion-body">
+                            <h4>Subtração:</h4>
+                            <p>Para subtrair é necessario de<br> 2 ou mais numeros</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_operacao">
+            <i class="icon_calc bi bi-x-circle"></i>
+            <h2>Multiplicação</h2>
+            <form class="form-card" action="{{ url_for('multiply') }}" method="post">
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-mult_1">
+                </label>
+                <p class="operador">x</p>
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-mult_2">
+                </label>
+                <p class="resultado">
+                    {% if multiplicar is defined %}
+                    {{ n1 }} x {{ n2 }} = {{ multiplicar }}
+                    {% else %}
+                    {% endif %}
+                </p>
+
+                <button type="submit" class="btn btn-info">Multiplicar</button>
+            </form>
+            <div class="accordion" id="accordionMulti">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapsemulti" aria-expanded="false" aria-controls="collapsemulti">
+                            <i class="bi bi bi-info-square px-2"></i>
+                            Como calcular?
+                        </button>
+                    </h2>
+                    <div id="collapsemulti" class="accordion-collapse collapse" data-bs-parent="#accordionMulti">
+                        <div class="accordion-body">
+                            <h4>Multiplicação:</h4>
+                            <p>Para multiplicar é necessario de<br> 2 ou mais numeros</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card_operacao">
+            <i class="icon_calc bi bi-slash-circle"></i>
+            <h2>Divisão</h2>
+            <form class="form-card" action="{{ url_for('dividir') }}" method="post">
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-divi_1">
+                </label>
+                <p class="operador">÷</p>
+                <label>
+                    <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-divi_2">
+                </label>
+                <p class="resultado">
+                    {% if divisao is defined %}
+                    {{ n1 }} ÷ {{ n2 }} = {{ divisao }}
+                    {% else %}
+                    {% endif %}
+                </p>
+
+                <button type="submit" class="btn btn-info">Divisão</button>
+            </form>
+            <div class="accordion" id="accordionDivisao">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseDivi" aria-expanded="false" aria-controls="collapseDivi">
+                            <i class="bi bi bi-info-square px-2"></i>
+                            Como calcular?
+                        </button>
+                    </h2>
+                    <div id="collapseDivi" class="accordion-collapse collapse" data-bs-parent="#accordionDivisao">
+                        <div class="accordion-body">
+                            <h4>Divisão:</h4>
+                            <p>Para dividir é necessario de<br> 2 ou mais numeros</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-{% endif %}
-{% endwith %}
-<div class="calculos">
-    <div class="card_operacao">
-        <i class="icon_calc bi bi-plus-circle"></i>
-        <h2>Adição</h2>
-        <form class="form-card" action="{{ url_for('somar') }}" method="post">
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-soma_1">
-            </label>
-            <p class="operador">+</p>
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-soma_2">
-            </label>
-            <p class="resultado">
-                {% if soma is defined %}
-                {{ n1 }} + {{ n2 }} = {{ soma }}
-                {% else %}
-                {% endif %}
-            </p>
-
-            <button type="submit" class="btn btn-info">Soma</button>
-        </form>
-        <div class="accordion" id="accordionSoma">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseAdicao" aria-expanded="false" aria-controls="collapseAdicao">
-                        <i class="bi bi bi-info-square px-2"></i>
-                        Como calcular?
-                    </button>
-                </h2>
-                <div id="collapseAdicao" class="accordion-collapse collapse" data-bs-parent="#accordionSoma">
-                    <div class="accordion-body">
-                        <h4>Adição:</h4>
-                        <p>Para somar é necessario de<br> 2 ou mais numeros</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card_operacao">
-        <i class="icon_calc bi bi-dash-circle"></i>
-        <h2>Subtração</h2>
-        <form class="form-card" action="{{ url_for('subtrarir') }}" method="post">
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-sub_1">
-            </label>
-            <p class="operador">-</p>
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-sub_2">
-            </label>
-            <p class="resultado">
-                {% if subtracao is defined %}
-                {{ n1 }} - {{ n2 }} = {{ subtracao }}
-                {% else %}
-                {% endif %}
-            </p>
-
-            <button type="submit" class="btn btn-info">Subtrair</button>
-        </form>
-        <div class="accordion" id="accordionSubtracao">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseMenos" aria-expanded="false" aria-controls="collapseMenos">
-                        <i class="bi bi bi-info-square px-2"></i>
-                        Como calcular?
-                    </button>
-                </h2>
-                <div id="collapseMenos" class="accordion-collapse collapse" data-bs-parent="#accordionSubtracao">
-                    <div class="accordion-body">
-                        <h4>Subtração:</h4>
-                        <p>Para subtrair é necessario de<br> 2 ou mais numeros</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card_operacao">
-        <i class="icon_calc bi bi-x-circle"></i>
-        <h2>Multiplicação</h2>
-        <form class="form-card" action="{{ url_for('multiply') }}" method="post">
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-mult_1">
-            </label>
-            <p class="operador">x</p>
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-mult_2">
-            </label>
-            <p class="resultado">
-                {% if multiplicar is defined %}
-                {{ n1 }} x {{ n2 }} = {{ multiplicar }}
-                {% else %}
-                {% endif %}
-            </p>
-
-            <button type="submit" class="btn btn-info">Multiplicar</button>
-        </form>
-        <div class="accordion" id="accordionMulti">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapsemulti" aria-expanded="false" aria-controls="collapsemulti">
-                        <i class="bi bi bi-info-square px-2"></i>
-                        Como calcular?
-                    </button>
-                </h2>
-                <div id="collapsemulti" class="accordion-collapse collapse" data-bs-parent="#accordionMulti">
-                    <div class="accordion-body">
-                        <h4>Multiplicação:</h4>
-                        <p>Para multiplicar é necessario de<br> 2 ou mais numeros</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card_operacao">
-        <i class="icon_calc bi bi-slash-circle"></i>
-        <h2>Divisão</h2>
-        <form class="form-card" action="{{ url_for('dividir') }}" method="post">
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-divi_1">
-            </label>
-            <p class="operador">÷</p>
-            <label>
-                <input type="number" class="form-control w-100" placeholder="Digite um número" name="form-divi_2">
-            </label>
-            <p class="resultado">
-                {% if divisao is defined %}
-                {{ n1 }} ÷ {{ n2 }} = {{ divisao }}
-                {% else %}
-                {% endif %}
-            </p>
-
-            <button type="submit" class="btn btn-info">Divisão</button>
-        </form>
-        <div class="accordion" id="accordionDivisao">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseDivi" aria-expanded="false" aria-controls="collapseDivi">
-                        <i class="bi bi bi-info-square px-2"></i>
-                        Como calcular?
-                    </button>
-                </h2>
-                <div id="collapseDivi" class="accordion-collapse collapse" data-bs-parent="#accordionDivisao">
-                    <div class="accordion-body">
-                        <h4>Divisão:</h4>
-                        <p>Para dividir é necessario de<br> 2 ou mais numeros</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 {% endblock %}

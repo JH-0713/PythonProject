@@ -1,92 +1,95 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
+<div class="content">
+    <h1>Funcionários</h1>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="bi-plus-circle"></i> Novo Funcionario
+    </button>
 
-<h1>Funcionários</h1>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    <i class="bi-plus-circle"></i> Novo Funcionario
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="form-calc d-flex flex-column " action="{{url_for('n_funcionario')}}" method="post">
-                    <label>
-                        Nome:
-                        <input class="form-control w-100 m-100" placeholder="Defina o nome" name="form_nome">
-                    </label>
-                    <div class="d-flex justify-content-between">
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-calc d-flex flex-column " action="{{url_for('registrar')}}" method="post">
                         <label>
-                            Data de Nascimento:
-                            <input class="form-control w-100" type="date"
-                                   placeholder="Defina o Data de Nascimento" name="form_date_nascimento">
+                            Nome:
+                            <input class="form-control w-100 m-100" placeholder="Defina o nome" name="form_nome">
+                        </label>
+                        <div class="d-flex justify-content-between">
+                            <label>
+                                Data de Nascimento:
+                                <input class="form-control w-100" type="date"
+                                       placeholder="Defina o Data de Nascimento" name="form_date_nascimento">
+                            </label>
+                            <label>
+                                CPF:
+                                <input class="form-control w-100" placeholder="Defina o CPF" name="form_cpf">
+                            </label>
+                        </div>
+                        <label>
+                            E-mail:
+                            <input class="form-control w-100" type="email" placeholder="Defina o E-mail"
+                                   name="form_email">
                         </label>
                         <label>
-                            CPF:
-                            <input class="form-control w-100" placeholder="Defina o CPF" name="form_cpf">
+                            Senha:
+                            <input class="form-control w-100" type="password" placeholder="Defina o Senha"
+                                   name="form_senha">
                         </label>
-                    </div>
-                    <label>
-                        E-mail:
-                        <input class="form-control w-100" type="email" placeholder="Defina o E-mail" name="form_email">
-                    </label>
-                    <label>
-                        Senha:
-                        <input class="form-control w-100" type="password" placeholder="Defina o Senha" name="form_senha">
-                    </label>
-                    <label>
-                        Cargo:
-                        <input class="form-control w-100" placeholder="Defina o Cargo" name="form_cargo">
-                    </label>
-                    <label>
-                        Sálario:
-                        <input class="form-control w-100" placeholder="Defina o Sálario" name="form_salario">
-                    </label>
-                    <button type="submit" class="btn btn-info">Cadastrar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                        <label>
+                            Cargo:
+                            <input class="form-control w-100" placeholder="Defina o Cargo" name="form_cargo">
+                        </label>
+                        <label>
+                            Sálario:
+                            <input class="form-control w-100" placeholder="Defina o Sálario" name="form_salario">
+                        </label>
+                        <button type="submit" class="btn btn-info">Cadastrar</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Data de Nascimento</th>
+            <th scope="col">CPF</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Sálario</th>
+            <th scope="col">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for func in funcio_exe%}
+        <tr>
+
+            <th scope="row">{{func.id}}</th>
+            <td>{{func.nome}}</td>
+            <td>{{func.data_nascimento}}</td>
+            <td>{{func.cpf}}</td>
+            <td>{{func.email}}</td>
+            <td>{{func.cargo}}</td>
+            <td>R$: {{func.salario}}</td>
+            <td><a href=""><i class="bi-pencil"></i></a> <a href=""><i class="bi-trash3 text-danger"></i></a></td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Data de Nascimento</th>
-        <th scope="col">CPF</th>
-        <th scope="col">E-mail</th>
-        <th scope="col">Senha</th>
-        <th scope="col">Cargo</th>
-        <th scope="col">Sálario</th>
-        <th scope="col">Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>João Hélio</td>
-        <td>07/11/2008</td>
-        <td>18125489654</td>
-        <td>jhzin54@gmail.com</td>
-        <td>jhzin1243</td>
-        <td>Estudante</td>
-        <td>R$: 0</td>
-        <td><a href=""><i class="bi-pencil"></i></a> <a href=""><i class="bi-trash3 text-danger"></i></a></td>
-
-    </tr>
-    </tbody>
-</table>
-
 {% endblock %}

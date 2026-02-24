@@ -46,7 +46,7 @@ a {
     align-items: center;
 }
 
-.conteudo h1 {
+.content h1 {
     margin: 10px;
     text-align: center;
     font-size: 50px;
@@ -89,7 +89,6 @@ a {
     justify-content: space-evenly;
     gap: 10px;
     padding: 10px;
-
 }
 
 .calculos a {
