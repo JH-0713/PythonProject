@@ -77,7 +77,6 @@
         <tbody>
         {% for func in funcio_exe%}
         <tr>
-
             <th scope="row">{{func.id}}</th>
             <td>{{func.nome}}</td>
             <td>{{func.data_nascimento}}</td>
@@ -85,8 +84,70 @@
             <td>{{func.email}}</td>
             <td>{{func.cargo}}</td>
             <td>R$: {{func.salario}}</td>
-            <td><a href=""><i class="bi-pencil"></i></a> <a href=""><i class="bi-trash3 text-danger"></i></a></td>
+            <td>
+                <a href="{{url_for('editar_funcionario',var_id=func.id)}}" id="link_out" data-bs-toggle="modal" data-bs-target="#staticEdit{{func.id}}"><i class="bi-pencil"></i></a>
+                <a href="{{url_for('editar_funcionario',var_id=func.id)}}" id="" data-bs-toggle="modal" data-bs-target="#staticDrop{{func.id}}"><i class="bi bi-trash"></i></a>
+            </td>
+            <div class="modal fade" id="staticEdit{{func.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 aria-labelledby="staticEdit_{{func.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticEdit_{{func.id}}">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-calc d-flex flex-column " action="{{url_for('editar_funcionario',var_id=func.id)}}" method="post">
+                                <label>
+                                    Nome:
+                                    <input class="form-control w-100 m-100" placeholder="Defina o nome"
+                                           name="form_nome" value="{{func.nome}}">
+                                </label>
+                                <div class="d-flex justify-content-between">
+                                    <label>
+                                        Data de Nascimento:
+                                        <input class="form-control w-100" type="date" value="{{func.data_nascimento}}"
+                                               placeholder="Defina o Data de Nascimento" name="form_date_nascimento">
+                                    </label>
+                                    <label>
+                                        CPF:
+                                        <input class="form-control w-100" placeholder="Defina o CPF" name="form_cpf"
+                                        value="{{func.cpf}}">
+                                    </label>
+                                </div>
+                                <label>
+                                    E-mail:
+                                    <input class="form-control w-100" type="email" placeholder="Defina o E-mail"
+                                           name="form_email" value="{{func.email}}">
+                                </label>
+                                <label>
+                                    Senha:
+                                    <input class="form-control w-100" type="password" placeholder="Defina o Senha"
+                                           name="form_senha" value="{{func.senha}}">
+                                </label>
+                                <label>
+                                    Cargo:
+                                    <input class="form-control w-100" placeholder="Defina o Cargo" name="form_cargo"
+                                    value="{{func.cargo}}">
+                                </label>
+                                <label>
+                                    Sálario:
+                                    <input class="form-control w-100" placeholder="Defina o Sálario"
+                                           name="form_salario" value="{{func.salario}}">
+                                </label>
 
+                                <button type="submit" class="btn btn-info">Editar</button>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
+                                    aria-label="Close">Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
         {% endfor %}
         </tbody>

@@ -315,6 +315,46 @@ def registrar():
             print(f'Erro: {e}')
             return redirect(url_for('funcionario'))
 
+@app.route('/editar_funcionario/<int:var_id>', methods=['GET', 'POST'])
+def editar_funcionario(var_id):
+    edit_funcio = select(Funcionarios).where(Funcionarios.id == var_id)
+    result_f = db_session.execute(edit_funcio).scalar_one_or_none()
+    if request.method == 'POST':
+        novo_name = request.form.get('form_nome')
+        novo_data_nascimento = request.form.get('form_date_nascimento')
+        novo_cpf = request.form.get('form_cpf')
+        novo_email = request.form.get('form_email')
+        novo_senha = request.form.get('form_senha')
+        novo_cargo = request.form.get('form_cargo')
+        novo_salario = request.form.get('form_salario')
+        if novo_name != '':
+            result_f.nome = novo_name
+        if novo_data_nascimento != '':
+            result_f.data_nascimento = novo_data_nascimento
+        if novo_cpf != '':
+            result_f.cpf = novo_cpf
+        if novo_email != '':
+            result_f.email = novo_email
+        if novo_senha != '':
+            result_f.senha = novo_senha
+        if novo_cargo != '':
+            result_f.cargo = novo_cargo
+        if novo_salario != '':
+            result_f.salario = novo_salario
+        try:
+            db_session.commit()
+            flash('Funcionario editado com sucesso!', 'success')
+            return redirect(url_for('funcionario'))
+        except SQLAlchemyError as e:
+            print(f'Erro: {e} na base de dados')
+            flash(f'Erro na base de dados','danger')
+            db_session.rollback()
+            return redirect(url_for('funcionario'))
+        except Exception as e:
+            print(f'Erro: {e}')
+            flash(f'Erro: {e}','danger')
+    return render_template('funcionarios.html',result_f=result_f)
+
 # TODO Final do código
 
 if __name__ == '__main__':
