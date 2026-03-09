@@ -81,13 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     formCadastrar.addEventListener('submit', function (event) {
         // Pegar 2 Inputs do Formulario
-        const inputNome = document.getElementById('input-name')
-        const inputData = document.getElementById('input-date')
-        const inputCpf = document.getElementById('input-cpf')
-        const inputEmail_ = document.getElementById('input-email')
-        const inputSenha_ = document.getElementById('input-senha')
-        const inputCargo = document.getElementById('input-cargo')
-        const inputSalarie = document.getElementById('input-salario')
+        const inputNome = document.getElementById('i-name')
+        const inputData = document.getElementById('i-date')
+        const inputCpf = document.getElementById('i-cpf')
+        const inputEmail_ = document.getElementById('i-email')
+        const inputSenha_ = document.getElementById('i-senha')
+        const inputCargo = document.getElementById('i-cargo')
+        const inputSalarie = document.getElementById('i-salario')
 
         let temErro = false
 
@@ -124,7 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (inputSenha_.value === '') {
             inputSenha_.classList.add('is-invalid')
             temErro = true
-        } else {
+        }
+
+        else {
             inputSenha_.classList.remove('is-invalid')
         }
 

@@ -261,37 +261,44 @@ def registrar():
             flash('Preencha o Campo Nome', 'alert-alert-danger')
             print('Preencha o Campo Nome')
             return redirect(url_for('login'))
+
         if not request.form['form_date_nascimento']:
             flash('Preencha o Campo Data Nascimento', 'alert-alert-danger')
             print('Preencha o Campo Data Nascimento')
             return redirect(url_for('login'))
+
         if not request.form['form_cpf']:
             flash('Preencha o Campo CPF', 'alert-alert-danger')
             print('Preencha o Campo CPF')
             return redirect(url_for('login'))
+
         if not request.form['form_email']:
             flash('Preencha o Campo Email', 'alert-alert-danger')
             print('Preencha o Campo Email')
             return redirect(url_for('login'))
+
         if not request.form['form_senha']:
             flash('Preencha o Campo Senha', 'alert-alert-danger')
             print('Preencha o Campo Senha')
             return redirect(url_for('login'))
+
         if not request.form['form_cargo']:
             flash('Preencha o Campo Cargo', 'alert-alert-danger')
             print('Preencha o Campo Cargo')
             return redirect(url_for('login'))
+
         if not request.form['form_salario']:
             flash('Preencha o Campo Salario', 'alert-alert-danger')
             print('Preencha o Campo Salario')
             return redirect(url_for('login'))
+
         ver_email = select(Funcionarios).where(Funcionarios.email == email)
         exist_email = db_session.execute(ver_email).scalar_one_or_none()
         if exist_email:
             flash(f'Email: {email} já esta cadastrado', 'alert-danger')
             return render_template('login.html')
         try:
-            new_user = Funcionarios(nome=nome, data_nascimento=data_nascimento, cpf=cpf,email=email, cargo=cargo, salario=salario)
+            new_user = Funcionarios(nome=nome, data_nascimento=data_nascimento, cpf=cpf,email=email, cargo=cargo, salario=float(salario))
             new_user.set_password(senha)
             db_session.add(new_user)
             db_session.commit()
