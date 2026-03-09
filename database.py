@@ -24,6 +24,7 @@ class Funcionarios(Base, UserMixin):
     senha = Column(String,nullable=False, unique=True)
     cargo = Column(String(50),nullable=False)
     salario = Column(Float,nullable=False)
+    criado_em = Column(DateTime,server_default=func.now())
 
     def __repr__(self):
         return f'<Funcionarios: {self.nome}>'
@@ -46,3 +47,4 @@ class Funcionarios(Base, UserMixin):
             print(f'Error_: {Exception}')
             db_session.rollback()
             raise
+

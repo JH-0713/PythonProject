@@ -52,10 +52,11 @@
                             Sálario:
                             <input class="form-control w-100" placeholder="Defina o Sálario" name="form_salario">
                         </label>
-                        <button type="submit" class="btn btn-info">Cadastrar</button>
+
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Cadastrar</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
@@ -71,6 +72,7 @@
             <th scope="col">E-mail</th>
             <th scope="col">Cargo</th>
             <th scope="col">Sálario</th>
+            <th scope="col">Data de Criação</th>
             <th scope="col">Ações</th>
         </tr>
         </thead>
@@ -84,20 +86,25 @@
             <td>{{func.email}}</td>
             <td>{{func.cargo}}</td>
             <td>R$: {{func.salario}}</td>
+            <td>{{func.criado_em}}</td>
             <td>
-                <a href="{{url_for('editar_funcionario',var_id=func.id)}}" id="link_out" data-bs-toggle="modal" data-bs-target="#staticEdit{{func.id}}"><i class="bi-pencil"></i></a>
-                <a href="{{url_for('editar_funcionario',var_id=func.id)}}" id="" data-bs-toggle="modal" data-bs-target="#staticDrop{{func.id}}"><i class="bi bi-trash"></i></a>
+                <a href="{{url_for('editar_funcionario',var_id=func.id)}}" id="link_out" data-bs-toggle="modal"
+                   data-bs-target="#staticEdit{{func.id}}"><i class="bi bi-pencil"></i></a>
+                <a href="{{url_for('deletar_funcionario',var_id=func.id)}}" id="" data-bs-toggle="modal"
+                   data-bs-target="#staticDrop{{func.id}}"><i class="bi bi-trash text-danger"></i></a>
             </td>
-            <div class="modal fade" id="staticEdit{{func.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            <div class="modal fade" id="staticEdit{{func.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                 tabindex="-1"
                  aria-labelledby="staticEdit_{{func.id}}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticEdit_{{func.id}}">Modal title</h1>
+                            <h1 class="modal-title fs-5" id="staticEdit_{{func.id}}">Editar Conta</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-calc d-flex flex-column " action="{{url_for('editar_funcionario',var_id=func.id)}}" method="post">
+                            <form class="form-calc" action="{{url_for('editar_funcionario',var_id=func.id)}}"
+                                  method="post">
                                 <label>
                                     Nome:
                                     <input class="form-control w-100 m-100" placeholder="Defina o nome"
@@ -112,7 +119,7 @@
                                     <label>
                                         CPF:
                                         <input class="form-control w-100" placeholder="Defina o CPF" name="form_cpf"
-                                        value="{{func.cpf}}">
+                                               value="{{func.cpf}}">
                                     </label>
                                 </div>
                                 <label>
@@ -121,35 +128,60 @@
                                            name="form_email" value="{{func.email}}">
                                 </label>
                                 <label>
-                                    Senha:
-                                    <input class="form-control w-100" type="password" placeholder="Defina o Senha"
-                                           name="form_senha" value="{{func.senha}}">
-                                </label>
-                                <label>
                                     Cargo:
                                     <input class="form-control w-100" placeholder="Defina o Cargo" name="form_cargo"
-                                    value="{{func.cargo}}">
+                                           value="{{func.cargo}}">
                                 </label>
                                 <label>
                                     Sálario:
                                     <input class="form-control w-100" placeholder="Defina o Sálario"
                                            name="form_salario" value="{{func.salario}}">
                                 </label>
-
-                                <button type="submit" class="btn btn-info">Editar</button>
-
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-info"><i class="bi bi-pencil"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">Cancelar
+                                    </button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
-                                    aria-label="Close">Cancelar
-                            </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="staticDrop{{func.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                 tabindex="-1"
+                 aria-labelledby="staticDrop_{{func.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticDrop_{{func.id}}">Deletar Conta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body d-flex flex-column">
+                            <form class="form-calc" action="{{url_for('deletar_funcionario',var_id=func.id)}}"
+                                  method="post">
+                                <div class="modal-footer">
+                                    <p>Deseja deletar conta {{func.nome}}?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger"
+                                       type="submit">
+                                        <i class="bi bi-person-lines-fill"></i>
+                                        Deletar
+                                    </button>
+                                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">Cancelar
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
 </div>

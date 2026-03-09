@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!--  link do css  -->
     <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
 </head>
 <body>
 <div class="menu">
@@ -17,7 +22,6 @@
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('calculos') }}">Cálculos</a></li>
         <li><a href="{{ url_for('funcionario') }}">Funcionários</a></li>
-
         {% if current_user.is_authenticated%}
         <li><a href="#" id="link_out" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">{{current_user.nome}}</a>
         </li>
@@ -36,7 +40,8 @@
                             <p>Deseja sair de sua conta?</p>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-danger" href="{{url_for('logout')}}"><i class="bi bi-person-lines-fill"></i>
+                            <a class="btn btn-danger" href="{{url_for('logout')}}"><i
+                                    class="bi bi-person-lines-fill"></i>
                                 Sair
                             </a>
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
@@ -53,6 +58,8 @@
 
     </ul>
 </div>
+<!-- Fonte -->
+
 
 {% block conteudo %}
 {% endblock %}

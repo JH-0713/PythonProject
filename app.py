@@ -49,7 +49,7 @@ def somar():
             flash('Soma Realizada', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, soma=soma)
         else:
-            flash('Preencha todos os campos para fazer a Soma', 'alert-danger')
+            flash('Preencha todos os campos para fazer a Soma', 'alert-alert-danger')
     return render_template("operacoes.html")
 
 
@@ -63,7 +63,7 @@ def subtrarir():
             flash('Subtração Realizada', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, subtracao=subtracao)
         else:
-            flash('Preencha todos os campos para fazer a Subtração', 'alert-danger')
+            flash('Preencha todos os campos para fazer a Subtração', 'alert-alert-danger')
     return render_template("operacoes.html")
 
 
@@ -77,7 +77,7 @@ def multiply():
             flash('Multiplicação Realizada', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, multiplicar=multiplicar)
         else:
-            flash('Preencha todos os campos para fazer a Multiplicação', 'alert-danger')
+            flash('Preencha todos os campos para fazer a Multiplicação', 'alert-alert-danger')
     return render_template("operacoes.html")
 
 
@@ -91,7 +91,7 @@ def dividir():
             flash('Divisão Realizada', 'alert-success')
             return render_template("operacoes.html", n1=n1, n2=n2, divisao=divisao)
         else:
-            flash('Preencha todos os campos para fazer a Divisão', 'alert-danger')
+            flash('Preencha todos os campos para fazer a Divisão', 'alert-alert-danger')
     return render_template("operacoes.html")
 
 
@@ -109,7 +109,7 @@ def area_triangulo():
             flash('Área do Triangulo Calculado', 'alert-success')
             return render_template('geometria.html', lado_t=lado_t, area_t=round(area_t, 2))
         else:
-            flash('Preencha todos os campos para calcular o Área do Triangulo', 'alert-danger')
+            flash('Preencha todos os campos para calcular o Área do Triangulo', 'alert-alert-danger')
             return render_template('geometria.html')
 
 
@@ -122,7 +122,7 @@ def perimetro_triangulo():
             flash('Perímetro do Triangulo Calculado', 'alert-success')
             return render_template('geometria.html', lado_t=lado_t, perime_t=round(perime_t, 2))
         else:
-            flash('Preencha todos os campos para calcular o Perímetro do Triangulo', 'alert-danger')
+            flash('Preencha todos os campos para calcular o Perímetro do Triangulo', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -135,7 +135,7 @@ def area_circulo():
             flash('Área do Circulo Calculado', 'alert-success')
             return render_template('geometria.html', raio=raio, area_c=round(area_c, 2))
         else:
-            flash('Preencha todos os campos para calcular a Área do Circulo', 'alert-danger')
+            flash('Preencha todos os campos para calcular a Área do Circulo', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -148,7 +148,7 @@ def perimetro_circulo():
             flash('Perímetro do Circulo Calculado', 'alert-success')
             return render_template('geometria.html', raio=raio, perime_c=round(perime_c, 2))
         else:
-            flash('Preencha todos os campos para calcular o Perímetro do Circulo', 'alert-danger')
+            flash('Preencha todos os campos para calcular o Perímetro do Circulo', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -161,7 +161,7 @@ def area_quadrado():
             flash('Área do Quadrado Calculado', 'alert-success')
             return render_template('geometria.html', lado_q=lado_q, area_q=round(area_q, 2))
         else:
-            flash('Preencha todos os campos para calcular a Área do Quadrado', 'alert-danger')
+            flash('Preencha todos os campos para calcular a Área do Quadrado', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -174,7 +174,7 @@ def perimetro_quadrado():
             flash('Perímetro do Quadrado Calculado', 'alert-success')
             return render_template('geometria.html', lado_q=lado_q, perime_q=round(perime_q, 2))
         else:
-            flash('Preencha todos os campos para calcular o Perímetro do Quadrado', 'alert-danger')
+            flash('Preencha todos os campos para calcular o Perímetro do Quadrado', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -187,7 +187,7 @@ def area_hexagono():
             flash('Área do Hexagono Calculado', 'alert-success')
             return render_template('geometria.html', lado_h=lado_h, area_h=round(area_h, 2))
         else:
-            flash('Preencha todos os campos para calcular a Área do Hexagono', 'alert-danger')
+            flash('Preencha todos os campos para calcular a Área do Hexagono', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -200,7 +200,7 @@ def perimetro_hexagano():
             flash('Perímetro do Hexagono Calculado', 'alert-success')
             return render_template('geometria.html', lado_h=lado_h, perime_h=round(perime_h, 2))
         else:
-            flash('Preencha todos os campos para calcular o Perímetro do Hexagono', 'alert-danger')
+            flash('Preencha todos os campos para calcular o Perímetro do Hexagono', 'alert-alert-danger')
     return render_template('geometria.html')
 
 
@@ -217,19 +217,19 @@ def funcionario():
 def n_funcionario():
     if request.method == 'POST':
         if not request.form['form_nome']:
-            flash('Preencha o Campo Nome', 'alert-danger')
+            flash('Preencha o Campo Nome', 'alert-alert-danger')
         if not request.form['form_date_nascimento']:
-            flash('Preencha o Campo Data Nascimento', 'alert-danger')
+            flash('Preencha o Campo Data Nascimento', 'alert-alert-danger')
         if not request.form['form_cpf']:
-            flash('Preencha o Campo CPF', 'alert-danger')
+            flash('Preencha o Campo CPF', 'alert-alert-danger')
         if not request.form['form_email']:
-            flash('Preencha o Campo Email', 'alert-danger')
+            flash('Preencha o Campo Email', 'alert-alert-danger')
         if not request.form['form_senha']:
-            flash('Preencha o Campo Senha', 'alert-danger')
+            flash('Preencha o Campo Senha', 'alert-alert-danger')
         if not request.form['form_cargo']:
-            flash('Preencha o Campo Cargo', 'alert-danger')
+            flash('Preencha o Campo Cargo', 'alert-alert-danger')
         if not request.form['form_salario']:
-            flash('Preencha o Campo Salario', 'alert-danger')
+            flash('Preencha o Campo Salario', 'alert-alert-danger')
         else:
             nome = request.form['form_nome']
             data_nascimento = request.form['form_date_nascimento']
@@ -250,10 +250,10 @@ def login():
         email = request.form.get('form_email')
         senha = request.form.get('form_senha')
         if not email:
-            flash('Porfavor insira o email', 'danger')
+            flash('Porfavor insira o email', 'alert-danger')
             return render_template('login.html')
         if not senha:
-            flash('Porfavor insira o senha', 'danger')
+            flash('Porfavor insira o senha', 'alert-danger')
             return render_template('login.html')
         email_sql = select(Funcionarios).where(Funcionarios.email == email)
         result = db_session.execute(email_sql).scalar_one_or_none()
@@ -265,12 +265,11 @@ def login():
                 return redirect(url_for('home'))
             else:
                 flash('Senha Incorreta', 'error')
-                return render_template('login.html')
+                return redirect(url_for('login'))
         else:
-            flash(f'Email não Encontrado', 'danger')
-            return render_template('login.html')
-    else:
-        return render_template('login.html')
+            flash(f'Email não Encontrado', 'alert-danger')
+            return redirect(url_for('login'))
+    return render_template('login.html')
 
 
 @app.route('/logout')
@@ -290,13 +289,13 @@ def registrar():
         cargo = request.form.get('form_cargo')
         salario = request.form.get('form_salario')
         if not nome or not data_nascimento or not cpf or not email or not senha or not cargo or not salario:
-            flash('Porfavor insira o nome', 'danger')
+            flash('Porfavor insira o nome', 'alert-danger')
             return render_template('login.html')
 
         ver_email = select(Funcionarios).where(Funcionarios.email == email)
         exist_email = db_session.execute(ver_email).scalar_one_or_none()
         if exist_email:
-            flash(f'Email: {email} já esta cadastrado', 'danger')
+            flash(f'Email: {email} já esta cadastrado', 'alert-danger')
             return render_template('login.html')
         try:
             new_user = Funcionarios(nome=nome, data_nascimento=data_nascimento, cpf=cpf,email=email, cargo=cargo, salario=salario)
@@ -307,11 +306,11 @@ def registrar():
             print('Cadastrado com sucesso!')
             return redirect(url_for('funcionario'))
         except SQLAlchemyError as e:
-            flash(f'Erro na base de dados', 'danger')
+            flash(f'Erro na base de dados', 'alert-danger')
             print(f'Erro na base de dados {e}')
             return redirect(url_for('funcionario'))
         except Exception as e:
-            flash(f'Error', 'danger')
+            flash(f'Error', 'alert-danger')
             print(f'Erro: {e}')
             return redirect(url_for('funcionario'))
 
@@ -324,7 +323,6 @@ def editar_funcionario(var_id):
         novo_data_nascimento = request.form.get('form_date_nascimento')
         novo_cpf = request.form.get('form_cpf')
         novo_email = request.form.get('form_email')
-        novo_senha = request.form.get('form_senha')
         novo_cargo = request.form.get('form_cargo')
         novo_salario = request.form.get('form_salario')
         if novo_name != '':
@@ -335,8 +333,6 @@ def editar_funcionario(var_id):
             result_f.cpf = novo_cpf
         if novo_email != '':
             result_f.email = novo_email
-        if novo_senha != '':
-            result_f.senha = novo_senha
         if novo_cargo != '':
             result_f.cargo = novo_cargo
         if novo_salario != '':
@@ -347,12 +343,33 @@ def editar_funcionario(var_id):
             return redirect(url_for('funcionario'))
         except SQLAlchemyError as e:
             print(f'Erro: {e} na base de dados')
-            flash(f'Erro na base de dados','danger')
+            flash(f'Erro na base de dados','alert-danger')
             db_session.rollback()
             return redirect(url_for('funcionario'))
         except Exception as e:
             print(f'Erro: {e}')
-            flash(f'Erro: {e}','danger')
+            flash(f'Erro: {e}','alert-danger')
+    return render_template('funcionarios.html',result_f=result_f)
+
+@app.route('/deletar_funcionario/<int:var_id>', methods=['GET', 'POST'])
+def deletar_funcionario(var_id):
+    delet_funcio = select(Funcionarios).where(Funcionarios.id == int(var_id))
+    result_f = db_session.execute(delet_funcio).scalar_one_or_none()
+    if request.method == 'POST':
+        try:
+            db_session.delete(result_f)
+            db_session.commit()
+            flash('Funcionario deletado com sucesso!', 'success')
+            return redirect(url_for('funcionario'))
+        except SQLAlchemyError as e:
+            print(f'Erro: {e} na base de dados')
+            flash(f'Erro na base de dados','alert-danger')
+            db_session.rollback()
+            return redirect(url_for('funcionario'))
+        except Exception as e:
+            print(f'Erro: {e}')
+            flash(f'Erro: {e}','alert-danger')
+        return render_template('funcionarios.html',result_f=result_f)
     return render_template('funcionarios.html',result_f=result_f)
 
 # TODO Final do código
