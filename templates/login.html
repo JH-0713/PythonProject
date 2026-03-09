@@ -4,24 +4,25 @@
 <div class="conteudo">
     <h1>Login</h1>
     <div class="calculos">
-        <form class="card_operacao form-card bg-secondary" action="{{url_for('login')}}" method="post">
+        <form id="form-login" class="card_operacao form-card bg-secondary" action="{{url_for('login')}}" method="post">
             E-mail:
             <label>
-                <input type="text" class="form-control m-1 w-100" placeholder="Digite o G-mail" name="form_email">
+                <input id="input-email" type="text" class="form-control m-1 w-100" placeholder="Digite o G-mail"
+                       name="form_email">
             </label>
             Senha:
             <label>
-                <input type="password" class="form-control m-1 w-100" placeholder="Digite sua Senha" name="form_senha">
+                <input id="input-senha" type="password" class="form-control m-1 w-100" placeholder="Digite sua Senha"
+                       name="form_senha">
             </label>
-            <div class="d-flex justify-content-around">
-                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    <i class="bi bi-person-lines-fill"></i> Cadastrar
-                </button>
+            <div class="font-link d-flex justify-content-around">
                 <button type="submit" class="btn btn-success"><i class="bi bi-upload"> Enviar</i></button>
-
+                <a class=" btn btn-danger text-light" onclick="limpaInputsLogin()"><i class="bi bi-clipboard2-x"> Cancelar</i></a>
                 <!-- Modal -->
-
             </div>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="bi bi-person-lines-fill"></i> Cadastrar
+            </button>
         </form>
     </div>
 </div>
@@ -38,7 +39,8 @@
                                 aria-label="Close"></button>
                     </div>
                     <div class="modal-body d-flex flex-column">
-                        <form class="form-calc d-flex flex-column justify-content-centerq" action="{{ url_for('registrar') }}" method="post">
+                        <form class="form-calc d-flex flex-column justify-content-centerq"
+                              action="{{ url_for('registrar') }}" method="post">
                             <label>
                                 Nome:
                                 <input class="form-control w-100 m-100" placeholder="Defina o nome"

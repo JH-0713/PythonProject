@@ -213,37 +213,6 @@ def funcionario():
     return render_template('funcionarios.html',funcio_exe=funcio_exe)
 
 
-@app.route('/novo_funcionario', methods=['GET', 'POST'])
-def n_funcionario():
-    if request.method == 'POST':
-        if not request.form['form_nome']:
-            flash('Preencha o Campo Nome', 'alert-alert-danger')
-        if not request.form['form_date_nascimento']:
-            flash('Preencha o Campo Data Nascimento', 'alert-alert-danger')
-        if not request.form['form_cpf']:
-            flash('Preencha o Campo CPF', 'alert-alert-danger')
-        if not request.form['form_email']:
-            flash('Preencha o Campo Email', 'alert-alert-danger')
-        if not request.form['form_senha']:
-            flash('Preencha o Campo Senha', 'alert-alert-danger')
-        if not request.form['form_cargo']:
-            flash('Preencha o Campo Cargo', 'alert-alert-danger')
-        if not request.form['form_salario']:
-            flash('Preencha o Campo Salario', 'alert-alert-danger')
-        else:
-            nome = request.form['form_nome']
-            data_nascimento = request.form['form_date_nascimento']
-            cpf = request.form['form_cpf']
-            email = request.form['form_email']
-            senha = request.form['form_senha']
-            cargo = request.form['form_cargo']
-            salario = request.form['form_salario']
-            flash('Novo Funcionario Cadastrado', 'alert-success')
-            return render_template('funcionarios.html', nome=nome, data_nascimento=data_nascimento, cpf=cpf,
-                                   email=email, senha=senha, cargo=cargo, salario=salario)
-    return render_template('funcionarios.html')
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -288,10 +257,34 @@ def registrar():
         senha = request.form.get('form_senha')
         cargo = request.form.get('form_cargo')
         salario = request.form.get('form_salario')
-        if not nome or not data_nascimento or not cpf or not email or not senha or not cargo or not salario:
-            flash('Porfavor insira o nome', 'alert-danger')
-            return render_template('login.html')
-
+        if not request.form['form_nome']:
+            flash('Preencha o Campo Nome', 'alert-alert-danger')
+            print('Preencha o Campo Nome')
+            return redirect(url_for('login'))
+        if not request.form['form_date_nascimento']:
+            flash('Preencha o Campo Data Nascimento', 'alert-alert-danger')
+            print('Preencha o Campo Data Nascimento')
+            return redirect(url_for('login'))
+        if not request.form['form_cpf']:
+            flash('Preencha o Campo CPF', 'alert-alert-danger')
+            print('Preencha o Campo CPF')
+            return redirect(url_for('login'))
+        if not request.form['form_email']:
+            flash('Preencha o Campo Email', 'alert-alert-danger')
+            print('Preencha o Campo Email')
+            return redirect(url_for('login'))
+        if not request.form['form_senha']:
+            flash('Preencha o Campo Senha', 'alert-alert-danger')
+            print('Preencha o Campo Senha')
+            return redirect(url_for('login'))
+        if not request.form['form_cargo']:
+            flash('Preencha o Campo Cargo', 'alert-alert-danger')
+            print('Preencha o Campo Cargo')
+            return redirect(url_for('login'))
+        if not request.form['form_salario']:
+            flash('Preencha o Campo Salario', 'alert-alert-danger')
+            print('Preencha o Campo Salario')
+            return redirect(url_for('login'))
         ver_email = select(Funcionarios).where(Funcionarios.email == email)
         exist_email = db_session.execute(ver_email).scalar_one_or_none()
         if exist_email:
@@ -371,6 +364,10 @@ def deletar_funcionario(var_id):
             flash(f'Erro: {e}','alert-danger')
         return render_template('funcionarios.html',result_f=result_f)
     return render_template('funcionarios.html',result_f=result_f)
+
+@app.route('/animais')
+def animais():
+    return render_template('animais.html')
 
 # TODO Final do código
 

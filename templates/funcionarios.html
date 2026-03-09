@@ -5,7 +5,7 @@
     <h1>Funcionários</h1>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <i class="bi-plus-circle"></i> Novo Funcionario
+        <i class="bi-plus-circle"></i> Novo Funcionário
     </button>
 
     <!-- Modal -->
@@ -14,54 +14,62 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Funcionário</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-calc d-flex flex-column " action="{{url_for('registrar')}}" method="post">
+                    <form class="form-calc d-flex flex-column " action="{{url_for('registrar')}}" method="post"
+                          id="form-cad">
                         <label>
                             Nome:
-                            <input class="form-control w-100 m-100" placeholder="Defina o nome" name="form_nome">
+                            <input id="input-name" class="form-control w-100 m-2" placeholder="Defina o nome" name="form_nome"
+                                   >
                         </label>
                         <div class="d-flex justify-content-between">
                             <label>
                                 Data de Nascimento:
-                                <input class="form-control w-100" type="date"
+                                <input id="input-date" class="form-control w-100 m-2" type="date"
                                        placeholder="Defina o Data de Nascimento" name="form_date_nascimento">
                             </label>
                             <label>
                                 CPF:
-                                <input class="form-control w-100" placeholder="Defina o CPF" name="form_cpf">
+                                <input id="input-cpf" class="form-control w-100 m-2" placeholder="Defina o CPF" name="form_cpf"
+                                       >
                             </label>
                         </div>
                         <label>
                             E-mail:
-                            <input class="form-control w-100" type="email" placeholder="Defina o E-mail"
-                                   name="form_email">
+                            <input id="input-email" class="form-control w-100 m-2" type="email" placeholder="Defina o E-mail"
+                                   name="form_email" >
                         </label>
                         <label>
                             Senha:
-                            <input class="form-control w-100" type="password" placeholder="Defina o Senha"
-                                   name="form_senha">
+                            <input id="input-senha" class="form-control w-100 m-2" type="password" placeholder="Defina o Senha"
+                                   name="form_senha" >
                         </label>
                         <label>
                             Cargo:
-                            <input class="form-control w-100" placeholder="Defina o Cargo" name="form_cargo">
+                            <input id="input-cargo" class="form-control w-100 m-2" placeholder="Defina o Cargo" name="form_cargo"
+                                   >
                         </label>
                         <label>
                             Sálario:
-                            <input class="form-control w-100" placeholder="Defina o Sálario" name="form_salario">
+                            <input id="input-salario" class="form-control w-100 m-2" placeholder="Defina o Sálario" name="form_salario"
+                                   >
                         </label>
 
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-info">Cadastrar</button>
+                            <a class="btn btn-danger" onclick="limpaInputsCad()">Cancelar</a>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-info">Cadastrar</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-                </div>
+
             </div>
         </div>
     </div>
+
+
     <table class="table">
         <thead>
         <tr>
@@ -93,6 +101,7 @@
                 <a href="{{url_for('deletar_funcionario',var_id=func.id)}}" id="" data-bs-toggle="modal"
                    data-bs-target="#staticDrop{{func.id}}"><i class="bi bi-trash text-danger"></i></a>
             </td>
+
             <div class="modal fade" id="staticEdit{{func.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                  tabindex="-1"
                  aria-labelledby="staticEdit_{{func.id}}" aria-hidden="true">
@@ -107,34 +116,35 @@
                                   method="post">
                                 <label>
                                     Nome:
-                                    <input class="form-control w-100 m-100" placeholder="Defina o nome"
+                                    <input class="form-control w-100 m-2" placeholder="Defina o nome"
                                            name="form_nome" value="{{func.nome}}">
                                 </label>
                                 <div class="d-flex justify-content-between">
                                     <label>
                                         Data de Nascimento:
-                                        <input class="form-control w-100" type="date" value="{{func.data_nascimento}}"
+                                        <input class="form-control w-100 m-2" type="date"
+                                               value="{{func.data_nascimento}}"
                                                placeholder="Defina o Data de Nascimento" name="form_date_nascimento">
                                     </label>
                                     <label>
                                         CPF:
-                                        <input class="form-control w-100" placeholder="Defina o CPF" name="form_cpf"
+                                        <input class="form-control w-100 m-2" placeholder="Defina o CPF" name="form_cpf"
                                                value="{{func.cpf}}">
                                     </label>
                                 </div>
                                 <label>
                                     E-mail:
-                                    <input class="form-control w-100" type="email" placeholder="Defina o E-mail"
+                                    <input class="form-control w-100 m-2" type="email" placeholder="Defina o E-mail"
                                            name="form_email" value="{{func.email}}">
                                 </label>
                                 <label>
                                     Cargo:
-                                    <input class="form-control w-100" placeholder="Defina o Cargo" name="form_cargo"
+                                    <input class="form-control w-100 m-2" placeholder="Defina o Cargo" name="form_cargo"
                                            value="{{func.cargo}}">
                                 </label>
                                 <label>
                                     Sálario:
-                                    <input class="form-control w-100" placeholder="Defina o Sálario"
+                                    <input class="form-control w-100 m-2" placeholder="Defina o Sálario"
                                            name="form_salario" value="{{func.salario}}">
                                 </label>
                                 <div class="modal-footer">
@@ -150,6 +160,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" id="staticDrop{{func.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                  tabindex="-1"
                  aria-labelledby="staticDrop_{{func.id}}" aria-hidden="true">
@@ -168,7 +179,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-danger"
-                                       type="submit">
+                                            type="submit">
                                         <i class="bi bi-person-lines-fill"></i>
                                         Deletar
                                     </button>
