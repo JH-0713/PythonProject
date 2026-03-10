@@ -9,7 +9,7 @@
 ## Curso 2:
 <img width="1892" height="912" alt="image" src="https://github.com/user-attachments/assets/e424b768-bb09-4a28-9017-5e8ea33d83be" />
 
-## Calculos:
+# Calculos:
 <img width="1907" height="912" alt="image" src="https://github.com/user-attachments/assets/750feacb-b739-47ab-954a-25784f5e366a" />
 
 ## Operações Matemática:
@@ -18,6 +18,8 @@
 ## Geometria:
 <img width="1907" height="915" alt="image" src="https://github.com/user-attachments/assets/656a58c2-5746-4786-b0cb-65ee5eb00e4c" />
 
-## Funcionarios:
+# Funcionarios:
 <img width="1907" height="915" alt="image" src="https://github.com/user-attachments/assets/d93d6862-0e5b-4250-a15e-7b4793e6d5b5" />
 
+# Animais:
+<img width="1909" height="912" alt="Captura de tela 2026-03-10 083208" src="https://github.com/user-attachments/assets/575168d4-c37e-4a94-9e79-ee02f9efdbab" />
