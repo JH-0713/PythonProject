@@ -18,7 +18,7 @@ function render_gato(dados) {
 
 }
 
-async function detDog() {
+async function getDog() {
     let resultado=await fetch("https://dog.ceo/api/breeds/image/random")
 
     if (resultado.ok) {
@@ -28,7 +28,7 @@ async function detDog() {
 }
 
 function render_dog(dados) {
-    let urlImg_d = dados[0].message
+    let urlImg_d = dados.message
     const imgDog = document.getElementById('img-dog')
     const iconDog = document.getElementById('icon-dog')
 
@@ -43,12 +43,12 @@ async function getFox() {
 
     if (resultado.ok) {
         let dados = await resultado.json()
-        render_gato(dados)
+        render_fox(dados)
     }
 }
 
 function render_fox(dados) {
-    let urlImg_f = dados[0].image
+    let urlImg_f = dados.image
     const imgFox = document.getElementById('img-fox')
     const iconFox = document.getElementById('icon-fox')
 
