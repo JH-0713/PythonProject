@@ -3,6 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from database import db_session, Funcionarios
 from sqlalchemy import select, and_, func
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+from api_routes import routes
 
 app = Flask(__name__)
 # Mover para .env
@@ -37,6 +38,16 @@ def calculos():
 @app.route('/operacoes')
 def operacoes():
     return render_template("operacoes.html")
+
+@app.route('/gatos')
+def listar_gatos():
+    l_gatos = routes.get_gatos()
+    print('antes:', l_gatos)
+    for i in l_gatos:
+        i["temperament"] = i["temperament"].split(',')
+        i["imagem"] = routes.get_image()["url"]
+
+    return render_template('gatos.html',l_gatos=l_gatos)
 
 
 @app.route('/somar', methods=['GET', 'POST'])

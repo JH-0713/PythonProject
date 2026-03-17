@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<div class="d-flex flex-column gap-4">
+    {% if l_gatos %}
+    {% for i in l_gatos %}
+    <div class="card">
+        <article class="breed-card shadow-sm" data-purpose="breed-display-card">
+            <div class="row g-0 h-100 ">
+                <div class="col-md-4 breed-img-container">
+                    <img alt="Gato" class="breed-img"
+                         src="{{i.imagem}}"/>
+                    <span class="badge-active">Active</span>
+                </div>
+                <div class="col-md-8 p-4 p-md-5 d-flex flex-column">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start mb-3">
+                        <div>
+                            <h3 class="h2 fw-bold text-dark mb-2">{{i.name}}</h3>
+                            <div class="d-flex flex-wrap gap-1">
+                                {% for i1 in i.temperament %}
+                                <span class="tag-badge">{{i1}}</span>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="text-md-end mt-3 mt-md-0 d-none d-md-block">
+                            <div class="small text-muted mb-1"><i
+                                    class="fa-solid fa-earth-americas text-cat-orange me-2"></i>{{i.origin}}
+                            </div>
+                            <div class="small text-muted"><i
+                                    class="fa-solid fa-hourglass-half text-cat-orange me-2"></i>{{i.life_span}} yrs
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-4 line-clamp-3">
+                        {{i.description}}
+                    </p>
+                    <div class="flex-column mb-3 border-top pt-3">
+                        <div class="col-2 mb-3">
+                            <div class="small text-uppercase fw-bold text-secondary" style="font-size: 0.65rem;">Origin
+                            </div>
+                            <div class="small fw-semibold text-dark">{{i.origin}}</div>
+                        </div>
+                        <div class="col-2 mb-3">
+                            <div class="small text-uppercase fw-bold text-secondary" style="font-size: 0.65rem;">Life
+                                Span
+                            </div>
+                            <div class="small fw-semibold text-dark">{{i.life_span}} yrs</div>
+                        </div>
+                        <div class="col-2 mb-3">
+                            <div class="small text-uppercase fw-bold text-secondary" style="font-size: 0.65rem;">Weight
+                            </div>
+                            <div class="small fw-semibold text-dark">{{i.weight.metric}} kg</div>
+                        </div>
+                    </div>
+                    <div class="mt-auto pt-3 border-top d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+                        <button class="btn btn-cat-orange w-100 w-md-auto">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>Nenhum Gato</h3>
+    {% endif %}
+</div>
+
+<!-- Breed Card 1: Abyssinian -->
+
+
+{% endblock %}
